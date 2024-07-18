@@ -20,6 +20,8 @@ export function setupServer() {
     }),
   );
 
+  server.set('json spaces', 2);
+
   server.get('/contacts', async (req, res) => {
     const contacts = await getContacts();
     res.status(200).json({
