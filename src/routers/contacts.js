@@ -14,7 +14,7 @@ router.get('/contacts', ctrlWrapper(getContactsController));
 
 router.get('/contacts/:contactId', ctrlWrapper(getContactsByIdController));
 
-router.get('/contacts', ctrlWrapper(createContactController));
+router.post('/contacts', ctrlWrapper(createContactController));
 
 router.delete('/contacts/:contactId', ctrlWrapper(deleteContactController));
 
