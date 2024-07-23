@@ -3,9 +3,10 @@ import cors from 'cors';
 import pino from 'pino-http';
 import dotenv from 'dotenv';
 import { env } from './utils/env.js';
-import router from './routers/contacts.js';
+import router from './routers/index.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 const PORT = Number(env('PORT', '3000'));
@@ -14,6 +15,7 @@ export function setupServer() {
   const server = express();
   server.use(cors());
   server.use(express.json());
+  server.use(cookieParser());
 
   server.use(
     pino({
