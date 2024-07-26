@@ -45,7 +45,21 @@ export const getContactsByIdController = async (req, res) => {
 };
 
 export const createContactController = async (req, res) => {
-  const contact = await createContact({ ...req.body, userId: req.user._id });
+  const photo = req.file;
+  let photoUrl;
+
+  if (photo) {
+    if (env('ENABLE_CLOUDINARY') === 'true') {
+      photoUrl = await saveFileToCloudinary(photo);
+    } else {
+      photoUrl = await saveFileToUploadDir(photo);
+    }
+  }
+  const contact = await createContact({
+    ...req.body,
+    userId: req.user._id,
+    photo: photoUrl,
+  });
 
   res.status(201).json({
     status: 201,
@@ -88,7 +102,7 @@ export const patchContactController = async (req, res, next) => {
     photo: photoUrl,
   };
 
-  const result = await updateContact(contactId, userId, updates, photoUrl);
+  const result = await updateContact(contactId, userId, updates);
 
   if (!result) {
     next(createHttpError(404, 'Contact not found'));
