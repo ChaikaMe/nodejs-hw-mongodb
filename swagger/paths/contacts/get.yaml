@@ -22,6 +22,11 @@ parameters:
       type: string
       enum: ['asc', 'desc']
       example: 'asc'
+  - in: query
+    name: sortBy
+    schema:
+      type: string
+      example: '66a27148a04c05a0487182e1'
 responses:
   '200':
     description: Successfully found contacts!

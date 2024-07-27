@@ -14,7 +14,7 @@
       "url": "http://localhost:3000"
     },
     {
-      "url": "<https://example.com/>"
+      "url": "<https://nodejs-hw-mongodb-lltw.onrender.com>"
     }
   ],
   "tags": [
@@ -68,6 +68,14 @@
                 "desc"
               ],
               "example": "asc"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string",
+              "example": "66a27148a04c05a0487182e1"
             }
           }
         ],
@@ -164,18 +172,11 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "_id",
                   "name",
                   "phoneNumber",
-                  "contactType",
-                  "userId"
+                  "contactType"
                 ],
                 "properties": {
-                  "_id": {
-                    "description": "Contact's id",
-                    "type": "string",
-                    "example": "65e4decdd286b30065d54af9"
-                  },
                   "name": {
                     "description": "Contact's name",
                     "type": "string",
@@ -204,11 +205,6 @@
                       "personal"
                     ],
                     "example": "personal"
-                  },
-                  "userId": {
-                    "description": "Contact's user id",
-                    "type": "string",
-                    "example": "65e4decdd286b30065d54af9"
                   },
                   "photo": {
                     "description": "Link to contact's photo",
